@@ -17,12 +17,43 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 // Third-Party
-app.use(
-  cors({
-    origin:'https://learning-management-system-sandy-seven.vercel.app', //5000
-    credentials: true,
-  })
-)
+const allowedOrigins = [
+             'http://localhost:3000',
+             'https://learning-management-system-sandy-seven.vercel.app',
+             'https://lms.aloktamrakar.me'
+];
+
+// CORS configuration
+app.use(cors({
+  origin: function(origin, callback) {
+    // Allow requests with no origin (like mobile apps)
+    if (!origin) return callback(null, true);
+    
+    // Check if the origin matches any allowed pattern
+    const isAllowed = allowedOrigins.some(allowedOrigin => {
+      if (allowedOrigin === undefined || allowedOrigin === 'null') {
+        return true;
+      }
+      // Handle wildcard IP addresses
+      if (allowedOrigin.includes('*')) {
+        const pattern = new RegExp(allowedOrigin.replace('*', '\\d+'));
+        return pattern.test(origin);
+      }
+      return allowedOrigin === origin;
+    });
+
+    if (isAllowed) {
+      callback(null, true);
+    } else {
+      callback(new Error(`Origin ${origin} not allowed by CORS`));
+    }
+  },
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept', 'Origin'],
+  exposedHeaders: ['Content-Range', 'X-Content-Range'],
+  maxAge: 600 // Increase maxAge to reduce preflight requests
+}));
 app.use(morgan('dev'));
 app.use(cookieParser());
 

@@ -64,7 +64,7 @@ console.log(fullName,email,password)
         gravity: "faces", // This option tells cloudinary to center the image around detected faces (if any) after cropping or resizing the original image
         crop: "fill"
       });
-
+      
       // If success
       if (result) {
         // Set the public_id and secure_url in DB
