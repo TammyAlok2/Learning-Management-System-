@@ -7,7 +7,7 @@ import User from "../models/user.model.js";
 import sendEmail from "../utils/sendEmail.js";
 
 const cookieOptions = {
-  secure: process.env.NODE_ENV === "production" ? true : false,
+  secure: true, // Set secure to true to ensure cookies are only sent over HTTPS When in production, set secure to true, otherwise false
   maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
   httpOnly: true,
   sameSite: "none",
