@@ -24,6 +24,24 @@ function Signup() {
         })
     }
 
+    function guestLogin(){
+        setLoginData({
+            email: "aloktamrakar2@gmail.com",
+            password: "Alok@1234",
+        });
+        // dispatch create account action
+  const response =  dispatch(login(loginData));
+        if(response?.payload?.success)
+            navigate("/");
+
+        setLoginData({
+            email: "",
+            password: "",
+        });
+
+
+    }
+
     async function onLogin(event) {
         event.preventDefault();
         if(!loginData.email || !loginData.password) {
@@ -78,6 +96,11 @@ function Signup() {
 
                     <button type="submit" className='mt-2 bg-yellow-600 hover:bg-yellow-500 transition-all ease-in-out duration-300 rounded-sm py-2 font-semibold text-lg cursor-pointer'>
                        Login
+                    </button>
+
+
+                   <button type="button" onClick={guestLogin} className='mt-2 bg-yellow-600 hover:bg-yellow-500 transition-all ease-in-out duration-300 rounded-sm py-2 font-semibold text-lg cursor-pointer'>
+                       Guest Login
                     </button>
 
                     <p className="text-center text-gray-600">
