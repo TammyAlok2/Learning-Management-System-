@@ -7,7 +7,7 @@ const initialState = {
     role: localStorage.getItem('role') || "",
     data: localStorage.getItem('data') != "undefined" ? JSON.parse(localStorage.getItem('data')) : {}
 };
-console.log(initialState);
+
 
 export const createAccount = createAsyncThunk("/auth/signup", async (data) => {
     try {
@@ -28,7 +28,6 @@ export const createAccount = createAsyncThunk("/auth/signup", async (data) => {
 })
 
 export const login = createAsyncThunk("/auth/login", async (data) => {
-    console.log(data)
     try {
         const res = axiosInstance.post("user/login", data);
         toast.promise(res, {

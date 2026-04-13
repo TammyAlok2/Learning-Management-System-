@@ -6,6 +6,11 @@ const axiosInstance = axios.create();
 
 
 axiosInstance.defaults.baseURL = BASE_URL;
+
+// Include credentials (cookies) in requests from the localstorage token
+
+
+
 axiosInstance.defaults.withCredentials = true;
 
 export default axiosInstance;
