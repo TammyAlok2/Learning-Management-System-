@@ -10,7 +10,7 @@ const initialState = {
 export const getAllCourses = createAsyncThunk("/course/get", async () => {
     try {
         const response = axiosInstance.get("/courses");
-         console.log((await response).data);
+   
         toast.promise(response, {
             loading: "loading course data...",
             success: "Courses loaded successfully",

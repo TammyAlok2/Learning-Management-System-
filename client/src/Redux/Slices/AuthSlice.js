@@ -12,7 +12,7 @@ const initialState = {
 export const createAccount = createAsyncThunk("/auth/signup", async (data) => {
     try {
         const res = axiosInstance.post("user/register", data);
-        console.log(res);
+
         toast.promise(res, {
             loading: "Wait! creating your account",
             success: (data) => {
@@ -76,7 +76,7 @@ export const updateProfile = createAsyncThunk("/user/update/profile", async (dat
 })
 
 export const updatePassword = createAsyncThunk("/user/update/password", async (data) => {
-    console.log(data)
+
     try {
         const res = axiosInstance.post(`user/change-password`, data);
         toast.promise(res, {
@@ -93,7 +93,7 @@ export const updatePassword = createAsyncThunk("/user/update/password", async (d
 })
 
 export const forgotPassword = createAsyncThunk("/user/forgot/password", async (data) => {
-    console.log(data)
+
     try {
         const res = axiosInstance.post(`user/reset`, data);
         toast.promise(res, {
@@ -112,7 +112,7 @@ export const forgotPassword = createAsyncThunk("/user/forgot/password", async (d
 
 
 export const resetPassword = createAsyncThunk("/user/update/password", async (data) => {
-    console.log('reset password ',data)
+
     try {
         const res = axiosInstance.post(`user/reset/${data[0]}`, data[1]);
         toast.promise(res, {

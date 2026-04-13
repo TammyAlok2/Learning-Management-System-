@@ -16,13 +16,12 @@ function Displaylectures() {
     const [currentVideo, setCurrentVideo] = useState(0);
 
     async function onLectureDelete(courseId, lectureId) {
-        console.log(courseId, lectureId);
+      
         await dispatch(deleteCourseLecture({courseId: courseId, lectureId: lectureId}));
         await dispatch(getCourseLectures(courseId));
     }
 
     useEffect(() => {
-        console.log(state);
         if(!state) navigate("/courses");
         dispatch(getCourseLectures(state._id));
     }, []);

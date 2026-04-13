@@ -28,7 +28,7 @@ function ForgotPassward() {
 
     async function onFormSubmit(e) {
         e.preventDefault();
-        console.log(data);
+
         if(!data.email) {
             toast.error("All fields are mandatory");
             return;

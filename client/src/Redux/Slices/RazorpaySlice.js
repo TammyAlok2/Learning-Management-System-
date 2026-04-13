@@ -29,7 +29,7 @@ export const purchaseCourseBundle = createAsyncThunk("/purchaseCourse", async ()
         return response.data;
     } catch(error) {
         toast.error(error?.response?.data?.message);
-        console.log("error"+ error);
+    
     }
 });
 
@@ -91,12 +91,12 @@ const razorpaySlice = createSlice({
             state.subscription_id = action?.payload?.subscription_id;
         })
         .addCase(verifyUserPayment.fulfilled, (state, action) => {
-            console.log(action);
+       
             toast.success(action?.payload?.message);
             state.isPaymentVerified = action?.payload?.success;
         })
         .addCase(verifyUserPayment.rejected, (state, action) => {
-            console.log(action);
+          
             toast.success(action?.payload?.message);
             state.isPaymentVerified = action?.payload?.success;
         })

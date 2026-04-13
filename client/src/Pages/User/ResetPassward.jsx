@@ -19,7 +19,7 @@ function ResetPassward() {
 
 const resetToken = useParams()
 const {resetId} = resetToken
-console.log('reset Id ' ,resetId)
+
     function handleInputChange(e) {
         const {name, value} = e.target;
         setData({

@@ -21,7 +21,7 @@ import CheckoutSuccess from './Pages/Payment/CheckoutSuccess';
 import Signup from './Pages/Signup';
 import EditProfile from './Pages/User/EditProfile';
 import Profile from './Pages/User/Profile';
-import ChangePassword from './Pages/User/ResetPassward'
+import ChangePassward from './Pages/User/ChangePassword';
 import ForgotPassward from './Pages/User/ForgotPassward';
 import ResetPassward from './Pages/User/ResetPassward';
 function App() {
@@ -51,7 +51,7 @@ function App() {
         <Route element={<RequireAuth allowedRoles={["ADMIN", "USER"]} />}>
           <Route path='/user/profile' element={<Profile />} />
           <Route path='/user/editprofile' element={<EditProfile />} />
-          <Route path='/user/changePassword'element={<ChangePassword/>}/>
+          <Route path='/user/changePassword'element={<ChangePassward/>}/>
           
           
           <Route path='/checkout' element={<Checkout />} />

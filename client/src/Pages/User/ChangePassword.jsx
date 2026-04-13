@@ -8,7 +8,7 @@ import { Link, useNavigate } from "react-router-dom";
 import HomeLayout from "../../Layouts/HomeLayout";
 import { forgotPassword, getUserData, updatePassword, updateProfile } from "../../Redux/Slices/AuthSlice";
 
-function ResetPassward() {
+function ChangePassward() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [data, setData] = useState({
@@ -28,14 +28,14 @@ function ResetPassward() {
 
     async function onFormSubmit(e) {
         e.preventDefault();
-        console.log(data);
+
         if(!data.email) {
             toast.error("All fields are mandatory");
             return;
         }
       
 
-       const response =  await dispatch(forgotPassword(data));
+       const response =  await dispatch(updatePassword(data));
        if(response){
         navigate('/login')
        }
@@ -51,19 +51,32 @@ function ResetPassward() {
                     onSubmit={onFormSubmit}
                     className="flex flex-col justify-center gap-5 rounded-lg p-4 text-white w-80 min-h-[26rem] shadow-[0_0_10px_black]"
                 >
-                    <h1 className="text-center text-2xl font-semibold text-black">Forgot Password</h1>
+                    <h1 className="text-center text-2xl font-semibold text-black">Update Password</h1>
                    
 
                     <div className="flex flex-col gap-1">
-                        <label htmlFor="Email" className="text-lg font-semibold text-black">Enter Email</label>
+                        <label htmlFor="oldPassword" className="text-lg font-semibold text-black">Enter Old Password</label>
                         <input 
                             required
-                            type="email"
-                            name="email"
-                            id="fullName"
-                            placeholder="Enter your name"
+                            type="password"
+                            name="oldPassword"
+                            id="oldPassword"
+                            placeholder="Enter your old password"
                             className="bg-transparent px-2 py-1 border text-gray-700"
-                            value={data.email}
+                            value={data.oldPassword}
+                            onChange={handleInputChange}
+                        
+                        />
+
+                        <label htmlFor="newPassword" className="text-lg font-semibold text-black">Enter New Password</label>
+                        <input 
+                            required
+                            type="password"
+                            name="newPassword"
+                            id="newPassword"
+                            placeholder="Enter your new password"
+                            className="bg-transparent px-2 py-1 border text-gray-700"
+                            value={data.newPassword}
                             onChange={handleInputChange}
                         
                         />
@@ -78,4 +91,4 @@ function ResetPassward() {
     );
 }
 
-export default ForgotPassward;
+export default ChangePassward;
