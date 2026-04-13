@@ -92,7 +92,7 @@ console.log(fullName,email,password)
   user.password = undefined;
 
   // Setting the token in the cookie with name token along with cookieOptions
-  res.cookie("token", token, cookieOptions);
+  //res.cookie("token", token, cookieOptions);
 
   // If all good send the response to the frontend
   res.status(201).json({
@@ -134,7 +134,7 @@ export const loginUser = asyncHandler(async (req, res, next) => {
   user.password = undefined;
 
   // Setting the token in the cookie with name token along with cookieOptions
-  res.cookie("token", token, cookieOptions);
+  //res.cookie("token", token, cookieOptions);
 
   // If all good send the response to the frontend
   res.status(200).json({
@@ -152,11 +152,11 @@ export const loginUser = asyncHandler(async (req, res, next) => {
  */
 export const logoutUser = asyncHandler(async (_req, res, _next) => {
   // Setting the cookie value to null
-  res.cookie("token", null, {
-    secure: process.env.NODE_ENV === "production" ? true : false,
-    maxAge: 0,
-    httpOnly: true
-  });
+  // res.cookie("token", null, {
+  //   secure: process.env.NODE_ENV === "production" ? true : false,
+  //   maxAge: 0,
+  //   httpOnly: true
+  // });
 
   // Sending the response
   res.status(200).json({
@@ -179,7 +179,7 @@ export const getLoggedInUserDetails = asyncHandler(async (req, res, _next) => {
     success: true,
     message: "User details",
     user,
-      token: req.cookies.token
+      token: req.token
   });
 });
 
