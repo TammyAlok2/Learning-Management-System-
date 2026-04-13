@@ -19,6 +19,7 @@ app.use(express.urlencoded({ extended: true }));
 // Third-Party
 const allowedOrigins = [
              'http://localhost:3000',
+             'http://localhost:5173',
              'https://learning-management-system-sandy-seven.vercel.app',
              'https://lms.aloktamrakar.me'
 ];

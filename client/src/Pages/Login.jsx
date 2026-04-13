@@ -24,13 +24,14 @@ function Signup() {
         })
     }
 
-    function guestLogin(){
-        setLoginData({
-            email: "aloktamrakar2@gmail.com",
-            password: "Alok@1234",
-        });
+    async function guestLogin(){
+       const data ={
+        email: "aloktamrakar2@gmail.com",
+        password: "Alok@1234"
+
+       }
         // dispatch create account action
-  const response =  dispatch(login(loginData));
+        const response = await dispatch(login(data));
         if(response?.payload?.success)
             navigate("/");
 
@@ -38,8 +39,6 @@ function Signup() {
             email: "",
             password: "",
         });
-
-
     }
 
     async function onLogin(event) {
