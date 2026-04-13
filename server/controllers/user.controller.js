@@ -86,7 +86,7 @@ console.log(fullName,email,password)
 
   // Generating a JWT token
   const token = await user.generateJWTToken();
-  console.log(token);
+
 
   // Setting the password to undefined so it does not get sent in the response
   user.password = undefined;
@@ -98,7 +98,8 @@ console.log(fullName,email,password)
   res.status(201).json({
     success: true,
     message: "User registered successfully",
-    user
+    user,
+    token
   });
 });
 
@@ -139,7 +140,8 @@ export const loginUser = asyncHandler(async (req, res, next) => {
   res.status(200).json({
     success: true,
     message: "User logged in successfully",
-    user
+    user,
+    token
   });
 });
 
@@ -171,12 +173,13 @@ export const logoutUser = asyncHandler(async (_req, res, _next) => {
 export const getLoggedInUserDetails = asyncHandler(async (req, res, _next) => {
   // Finding the user using the id from modified req object
   const user = await User.findById(req.user.id);
-  console.log(user);
+
 
   res.status(200).json({
     success: true,
     message: "User details",
-    user
+    user,
+      token: req.cookies.token
   });
 });
 
